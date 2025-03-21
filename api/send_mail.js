@@ -5,20 +5,20 @@ module.exports = async (req, res) => {
     return res.status(405).json({ error: "Method Not Allowed" });
   }
 
-  const { name_phoneNo_address } = req.body;
+  const { name_phoneNo_address_service_date_time } = req.body;
 
-  if (!name_phoneNo_address) {
+  if (!name_phoneNo_address_service_date_time) {
     return res
       .status(400)
-      .json({ error: "Missing required field: name_phoneNo_address" });
+      .json({ error: "Missing required field: name_phoneNo_address_service_date_time" });
   }
 
-  const [name, phoneNo, address] = name_phoneNo_address.split("_");
+  const [name, phoneNo, address, service, date, time] = name_phoneNo_address_service_date_time.split("_");
 
   if (!name || !phoneNo || !address) {
     return res
       .status(400)
-      .json({ error: "Invalid format for name_phoneNo_address" });
+      .json({ error: "Invalid format for name_phoneNo_address_service_date_time" });
       
   }
 
@@ -58,11 +58,14 @@ module.exports = async (req, res) => {
     text: `
       Hi Admin,
 
-      You have a new lead from Rockstar AI.
+      You have a new free estimate lead from Rockstar AI.
 
       Name: ${name}
       Phone No: ${phoneNo}
       Address: ${address}
+      Type of Painting Service: ${service}
+      Date: ${date}
+      Time: ${time}
 
       Please engage at your earliest convenience.
 
