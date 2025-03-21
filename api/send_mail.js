@@ -45,7 +45,6 @@ module.exports = async (req, res) => {
   let transporter = nodemailer.createTransport({
     host: smtpHost,
     port: parseInt(smtpPort, 10),
-    secure: true,
     auth: {
       user: smtpUser,
       pass: smtpPass,
