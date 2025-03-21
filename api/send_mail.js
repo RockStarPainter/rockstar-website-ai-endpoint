@@ -10,16 +10,20 @@ module.exports = async (req, res) => {
   if (!name_phoneNo_address_service_date_time) {
     return res
       .status(400)
-      .json({ error: "Missing required field: name_phoneNo_address_service_date_time" });
+      .json({
+        error: "Missing required field: name_phoneNo_address_service_date_time",
+      });
   }
 
-  const [name, phoneNo, address, service, date, time] = name_phoneNo_address_service_date_time.split("_");
+  const [name, phoneNo, address, service, date, time] =
+    name_phoneNo_address_service_date_time.split("_");
 
   if (!name || !phoneNo || !address) {
     return res
       .status(400)
-      .json({ error: "Invalid format for name_phoneNo_address_service_date_time" });
-      
+      .json({
+        error: "Invalid format for name_phoneNo_address_service_date_time",
+      });
   }
 
   const smtpHost = process.env.SMTP_HOST;
@@ -66,8 +70,6 @@ module.exports = async (req, res) => {
       Type of Painting Service: ${service}
       Date: ${date}
       Time: ${time}
-
-      Please engage at your earliest convenience.
 
       Best,
       AI Assistant
